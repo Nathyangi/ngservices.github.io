@@ -70,11 +70,11 @@
                     <a href="#home" class="text-gray-300 hover:text-green-400 transition-colors duration-300">Home</a>
                     <a href="#about" class="text-gray-300 hover:text-green-400 transition-colors duration-300">About Us</a>
                     <!-- Services Dropdown -->
-                    <div class="relative group">
-                        <a href="#services" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center">
+                    <div class="relative">
+                        <button id="services-button" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center">
                             Services <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                        </a>
-                        <div class="absolute hidden group-hover:block bg-gray-900 border border-gray-800 rounded-lg mt-2 w-56 py-2 shadow-lg">
+                        </button>
+                        <div id="services-dropdown" class="absolute hidden bg-gray-900 border border-gray-800 rounded-lg mt-2 w-56 py-2 shadow-lg z-10">
                             <a href="#cybersecurity" class="block px-4 py-2 text-sm text-gray-300 hover:bg-green-500/10 hover:text-green-400">Cybersecurity Services</a>
                             <a href="#solar" class="block px-4 py-2 text-sm text-gray-300 hover:bg-green-500/10 hover:text-green-400">Solar Energy Solutions</a>
                             <a href="#networking" class="block px-4 py-2 text-sm text-gray-300 hover:bg-green-500/10 hover:text-green-400">Networking Infrastructure</a>
@@ -291,12 +291,7 @@
                 button.addEventListener('click', () => {
                     const content = button.nextElementSibling;
                     const isActive = button.classList.contains('active');
-                    accordionButtons.forEach(btn => {
-                        if (btn !== button) {
-                            btn.classList.remove('active');
-                            btn.nextElementSibling.style.maxHeight = null;
-                        }
-                    });
+                    // The block that auto-closed other accordions has been removed.
                     button.classList.toggle('active');
                     if (content.style.maxHeight) {
                         content.style.maxHeight = null;
@@ -306,6 +301,17 @@
                 });
             });
 
+            // --- Services Dropdown Toggle (Desktop) ---
+            const servicesButton = document.getElementById('services-button');
+            const servicesDropdown = document.getElementById('services-dropdown');
+
+            if (servicesButton) {
+                servicesButton.addEventListener('click', (event) => {
+                    event.stopPropagation(); // Prevent the document click listener from firing immediately
+                    servicesDropdown.classList.toggle('hidden');
+                });
+            }
+
             // --- Mobile Menu Toggle ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -314,6 +320,13 @@
                 mobileMenu.classList.toggle('hidden');
                 mobileMenuIcon.classList.toggle('fa-bars');
                 mobileMenuIcon.classList.toggle('fa-times');
+            });
+
+            // --- Close dropdown when clicking outside ---
+            document.addEventListener('click', () => {
+                if (servicesDropdown && !servicesDropdown.classList.contains('hidden')) {
+                    servicesDropdown.classList.add('hidden');
+                }
             });
             
             // --- Scroll Animations ---
