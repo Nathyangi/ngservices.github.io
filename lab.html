@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Labs | NGTech Services</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body class="bg-gray-900 text-white">
+
+<!-- Navbar -->
+<header class="bg-black text-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="text-2xl font-bold text-green-500 hover:text-green-400 transition">
+      NGTech Services
+    </a>
+
+  <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-green-400 transition">Home</a>
+      <a href="about.html" class="hover:text-green-400 transition">About</a>
+      <a href="services.html" class="hover:text-green-400 transition">Services</a>
+      <a href="blog.html" class="hover:text-green-400 transition">Blog</a>
+      <a href="lab.html" class="hover:text-green-400 transition">Lab</a>
+      <a href="projects.html" class="hover:text-green-400 transition">Projects</a>
+      <a href="contact.html" class="hover:text-green-400 transition">Contact</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-toggle" class="md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden bg-black md:hidden border-t border-gray-800">
+    <a href="index.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Home</a>
+    <a href="about.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">About</a>
+    <a href="services.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Services</a>
+    <a href="blog.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Blog</a>
+    <a href="lab.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Lab</a>
+    <a href="projects.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Projects</a>
+    <a href="contact.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Contact</a>
+  </nav>
+</header>
+
+  <!-- Page Overlay for Mobile Menu -->
+  <div id="page-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+
+
+
+
+
+
+
+  
+  <!-- ===== Labs Section ===== -->
+  <section class="py-24 bg-gray-900 min-h-screen">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10">
+        <h1 class="text-4xl font-bold text-white mb-4">Labs & Tutorials</h1>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Explore practical hands-on labs in Networking, Cybersecurity, and Installations.
+        </p>
+      </div>
+
+      <!-- Filter Buttons -->
+      <div class="flex justify-center gap-4 mb-10 flex-wrap">
+        <button class="filter-btn bg-green-500 text-black px-4 py-2 rounded-lg font-semibold hover:bg-green-600 active" data-category="all">All</button>
+        <button class="filter-btn bg-gray-800 text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-green-500 hover:text-black transition" data-category="networking">Networking</button>
+        <button class="filter-btn bg-gray-800 text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-green-500 hover:text-black transition" data-category="cybersecurity">Cybersecurity</button>
+        <button class="filter-btn bg-gray-800 text-gray-300 px-4 py-2 rounded-lg font-semibold hover:bg-green-500 hover:text-black transition" data-category="installation">Installation</button>
+      </div>
+
+      <!-- Labs Grid -->
+      <div id="labs-container" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Labs will load dynamically from JSON -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Modal ===== -->
+  <div id="modal" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center hidden z-50">
+    <div class="relative bg-gray-900 rounded-xl overflow-hidden max-w-3xl w-full">
+      <button onclick="closeModal()" class="absolute top-3 right-3 text-white text-2xl font-bold hover:text-gray-300">&times;</button>
+      <div id="modal-content" class="w-full aspect-video"></div>
+    </div>
+  </div>
+
+  <!-- ===== Scripts ===== -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/labs.js" defer></script>
+
+  <script>
+    // Mobile Menu Toggle
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+
+    // Modal Functions
+    function openModal(videoUrl) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+      content.innerHTML = `<iframe src="${videoUrl}" class="w-full h-[500px]" frameborder="0" allowfullscreen></iframe>`;
+      modal.classList.remove('hidden');
+    }
+
+    function openModalImage(imageUrl) {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+      content.innerHTML = `<img src="${imageUrl}" class="w-full h-auto rounded-xl" alt="Lab Image">`;
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      const content = document.getElementById('modal-content');
+      content.innerHTML = '';
+      modal.classList.add('hidden');
+    }
+  </script>
+  
+   <script src="https://cdn.tailwindcss.com/3.4.1?plugins=typography"></script>
+  <script src="assets/js/lab.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  
+
+<!-- ======= FOOTER ======= -->
+<footer class="bg-black border-t border-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500">
+    <div class="flex justify-center space-x-6 mb-4">
+      <!-- X (Twitter) -->
+      <a href="https://x.com/nathylyang" target="_blank" class="hover:text-green-500 transition-colors" aria-label="X">
+        <i class="fab fa-x-twitter text-2xl"></i>
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/nathyyangi" target="_blank" class="hover:text-green-500 transition-colors" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/yourusername" target="_blank" class="hover:text-green-500 transition-colors" aria-label="Facebook">
+        <i class="fab fa-facebook text-2xl"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 NGTechServices. All Rights Reserved. Powered by NGTech.</p>
+  </div>
+</footer>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | NGTech Services</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="antialiased bg-black text-gray-100">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+ <!-- Navbar -->
+<header class="bg-black text-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="text-2xl font-bold text-green-500 hover:text-green-400 transition">
+      NGTech Services
+    </a>
+
+  <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-green-400 transition">Home</a>
+      <a href="about.html" class="hover:text-green-400 transition">About</a>
+      <a href="services.html" class="hover:text-green-400 transition">Services</a>
+      <a href="blog.html" class="hover:text-green-400 transition">Blog</a>
+      <a href="lab.html" class="hover:text-green-400 transition">Lab</a>
+      <a href="projects.html" class="hover:text-green-400 transition">Projects</a>
+      <a href="contact.html" class="hover:text-green-400 transition">Contact</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-toggle" class="md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden bg-black md:hidden border-t border-gray-800">
+    <a href="index.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Home</a>
+    <a href="about.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">About</a>
+    <a href="services.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Services</a>
+    <a href="blog.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Blog</a>
+    <a href="lab.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Lab</a>
+    <a href="projects.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Projects</a>
+    <a href="contact.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Contact</a>
+  </nav>
+</header>
+
+  <!-- Page Overlay for Mobile Menu -->
+  <div id="page-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+
+  <!-- ======= BLOG SECTION ======= -->
+  <main>
+    <section id="blog" class="py-20 lg:py-32 bg-black fade-in-section">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">Tech Insights & Updates</h1>
+          <p class="text-lg text-gray-400 max-w-2xl mx-auto">
+            Learn from our experience in networking, solar, and cybersecurity — straight from the NGTech Services desk.
+          </p>
+          <button class="open-search-btn mt-6 inline-flex items-center bg-gray-800 border border-gray-700 text-gray-300 px-6 py-3 rounded-lg text-lg transition-all duration-300 hover:bg-gray-700 hover:border-green-500 group">
+             <i class="fas fa-search mr-3 text-green-500 group-hover:scale-110 transition-transform"></i>
+             Search Articles
+          </button>
+        </div>
+
+        <!-- Blog Container -->
+        <section class="max-w-6xl mx-auto py-12 px-6">
+          <h2 class="text-3xl font-bold text-green-500 mb-8 text-center">Latest Blog Posts</h2>
+          <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <!-- No Results -->
+        <div id="no-results-message" class="hidden text-center text-gray-400 text-lg py-12">
+          <i class="fas fa-exclamation-circle text-4xl text-green-500 mb-4"></i>
+          <p>No posts found matching your search.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+<!-- ======= FOOTER ======= -->
+<footer class="bg-black border-t border-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500">
+    <div class="flex justify-center space-x-6 mb-4">
+      <!-- X (Twitter) -->
+      <a href="https://x.com/nathylyang" target="_blank" class="hover:text-green-500 transition-colors" aria-label="X">
+        <i class="fab fa-x-twitter text-2xl"></i>
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/nathyyangi" target="_blank" class="hover:text-green-500 transition-colors" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/yourusername" target="_blank" class="hover:text-green-500 transition-colors" aria-label="Facebook">
+        <i class="fab fa-facebook text-2xl"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 NGTechServices. All Rights Reserved. Powered by NGTech.</p>
+  </div>
+</footer>
+
+  <!-- ======= MODALS ======= -->
+
+  <!-- Search Modal -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden p-4 pt-20 sm:pt-32">
+    <div class="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="relative bg-gray-900 w-full max-w-2xl mx-auto rounded-xl shadow-2xl border border-gray-700">
+      <button id="close-search-btn" class="absolute top-4 right-4 text-gray-500 hover:text-green-500">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <div class="p-6">
+        <div class="relative">
+          <input type="text" id="search-input" placeholder="Search posts by title or keyword..."
+                 class="w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 text-white text-lg rounded-lg focus:ring-2 focus:ring-green-500">
+          <i class="fas fa-search text-green-500 text-xl absolute left-4 top-1/2 -translate-y-1/2"></i>
+        </div>
+        <p class="text-sm text-gray-500 mt-3">Press Enter to search, or type to filter results live.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Blog Post Modal -->
+  <div id="post-modal" class="fixed inset-0 z-50 hidden p-4 overflow-y-auto">
+    <div class="fixed inset-0 bg-black/80 backdrop-blur-sm"></div>
+    <div class="relative bg-gray-900 text-gray-100 w-full max-w-4xl mx-auto my-12 rounded-2xl shadow-2xl border border-green-500/20 transition-all duration-300">
+      <div class="p-6 md:p-10 relative">
+        <button id="close-post-btn" class="absolute top-4 right-4 text-gray-400 hover:text-green-500">
+          <i class="fas fa-times text-3xl"></i>
+        </button>
+        <div id="post-modal-content" class="space-y-4 leading-relaxed text-gray-200">
+          <!-- Injected by JS -->
+        </div>
+        <button id="back-to-blog-btn" class="mt-8 inline-flex items-center text-green-500 hover:text-green-400">
+          <i class="fas fa-arrow-left mr-2"></i> Back to Insights
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======= JS ======= -->
+  <script src="assets/js/main.js" defer></script>
+  
+  <script src="assets/js/blog.js" defer></script>
+
+ 
+
+  
+
+</body>
+</html>

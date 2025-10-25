@@ -1,357 +1,306 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NGTechServices | Cybersecurity, Solar & Networking Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-        }
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.6s ease-in-out;
-        }
-        .accordion-button.active .accordion-arrow {
-            transform: rotate(180deg);
-        }
-        .card {
-            background-color: #1a1a1a;
-            border: 1px solid #2a2a2a;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 255, 135, 0.1);
-        }
-        .service-card {
-             background-color: #1a1a1a;
-             border: 1px solid #2a2a2a;
-             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 25px rgba(0, 255, 135, 0.15);
-            border-color: #00ff87;
-        }
-        details > summary { list-style: none; }
-        details > summary::-webkit-details-marker { display: none; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NGTech Services | Solar, Networking & Cybersecurity</title>
 
-        /* Animation for elements fading in on scroll */
-        .fade-in-element {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in-element.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <!-- 
+    SEO & META TAGS
+    - Added Description, Keywords, Author, and Open Graph tags
+    - for better search ranking and social media sharing.
+  -->
+  <meta name="description" content="NGTech Services provides reliable solar energy systems, secure networking solutions, and proactive cybersecurity for homes and businesses across Africa.">
+  <meta name="keywords" content="Solar Installation, Networking, Cybersecurity, NGTech, Power Solutions, Africa, Tech Services, Nath">
+  <meta name="author" content="NGTech Services">
+  
+  <!-- Open Graph / Social Media Preview -->
+  <meta property="og:title" content="NGTech Services | Solar, Networking & Cybersecurity">
+  <meta property="og:description" content="Powering the future with clean energy, secure networks, and innovative tech solutions.">
+  <meta property="og:type" content="website">
+  <!-- TODO: Add a link to a preview image (e.g., assets/img/social-preview.jpg) -->
+  <!-- <meta property="og:image" content="https://yourwebsite.com/assets/img/social-preview.jpg"> -->
+  <!-- <meta property="og:url" content="https://yourwebsite.com/"> -->
+
+  <!-- 
+    FAVICON 
+    - Added a placeholder link for your site's favicon.
+    - TODO: Create a favicon.png (e.g., 32x32) and place it in 'assets/img/'.
+  -->
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!-- 
+    Tailwind Dark Mode & Font Configuration
+    - Set default font to 'Inter'
+    - Defaulted to 'dark' mode for the whole site
+  -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+      darkMode: 'class', // Use 'class' to manually toggle dark mode
+    }
+  </script>
+  <!-- 
+    Force Dark Mode
+    - Added 'dark' class to html to match your site's theme.
+  -->
 </head>
-<body class="text-gray-200">
 
-    <!-- =========== NAVIGATION BAR START =========== -->
-    <nav class="bg-gray-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-800">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-                <div>
-                    <a href="#" class="text-2xl font-bold text-white"><i class="fas fa-layer-group text-green-400"></i> NGTech<span class="text-green-400">Services</span></a>
-                </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-300 hover:text-green-400 transition-colors duration-300">Home</a>
-                    <a href="#about" class="text-gray-300 hover:text-green-400 transition-colors duration-300">About Us</a>
-                    <!-- Services Dropdown -->
-                    <div class="relative">
-                        <button id="services-button" class="text-gray-300 hover:text-green-400 transition-colors duration-300 flex items-center">
-                            Services <i class="fas fa-chevron-down ml-2 text-xs"></i>
-                        </button>
-                        <div id="services-dropdown" class="absolute hidden bg-gray-900 border border-gray-800 rounded-lg mt-2 w-56 py-2 shadow-lg z-10">
-                            <a href="#cybersecurity" class="block px-4 py-2 text-sm text-gray-300 hover:bg-green-500/10 hover:text-green-400">Cybersecurity Services</a>
-                            <a href="#solar" class="block px-4 py-2 text-sm text-gray-300 hover:bg-green-500/10 hover:text-green-400">Solar Energy Solutions</a>
-                            <a href="#networking" class="block px-4 py-2 text-sm text-gray-300 hover:bg-green-500/10 hover:text-green-400">Networking Infrastructure</a>
-                        </div>
-                    </div>
-                    <a href="#contact" class="text-gray-300 hover:text-green-400 transition-colors duration-300">Contact</a>
-                </div>
-                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white focus:outline-none">
-                        <i id="mobile-menu-icon" class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-3">
-            <a href="#home" class="block text-gray-300 hover:text-green-400">Home</a>
-            <a href="#about" class="block text-gray-300 hover:text-green-400">About Us</a>
-            <a href="#services" class="block text-gray-300 hover:text-green-400">Services</a>
-            <a href="#contact" class="block text-gray-300 hover:text-green-400">Contact</a>
-        </div>
+<body class="antialiased bg-black text-gray-200 dark">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 z-50 h-1 bg-green-500 transition-all duration-150"></div>
+
+ <!-- Navbar -->
+<header class="bg-black text-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="text-2xl font-bold text-green-500 hover:text-green-400 transition">
+      NGTech Services
+    </a>
+
+  <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-green-400 transition">Home</a>
+      <a href="about.html" class="hover:text-green-400 transition">About</a>
+      <a href="services.html" class="hover:text-green-400 transition">Services</a>
+      <a href="blog.html" class="hover:text-green-400 transition">Blog</a>
+      <a href="lab.html" class="hover:text-green-400 transition">Lab</a>
+      <a href="projects.html" class="hover:text-green-400 transition">Projects</a>
+      <a href="contact.html" class="hover:text-green-400 transition">Contact</a>
     </nav>
-    <!-- =========== NAVIGATION BAR END =========== -->
 
-    <main>
-        <!-- =========== HERO SECTION START =========== -->
-        <section id="home" class="relative py-20 md:py-32 bg-cover bg-center" style="background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 1)), url('https://placehold.co/1920x1080/0a0a0a/1a1a1a?text=NGTechServices');">
-             <div class="container mx-auto text-center px-6 z-10">
-                <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight">
-                    Comprehensive <span class="text-green-400">Technology Solutions</span> for a Modern World
-                </h1>
-                <p class="text-lg text-gray-400 mt-4 max-w-3xl mx-auto">
-                    Your trusted partner in Cybersecurity, Sustainable Solar Energy, and robust Network Infrastructure.
-                </p>
-                <div class="mt-8">
-                    <a href="#services" class="bg-green-500 text-gray-900 font-bold py-3 px-8 rounded-full hover:bg-green-400 transition-all duration-300 text-lg shadow-lg shadow-green-500/20">
-                        Explore Our Services
-                    </a>
-                </div>
-            </div>
-        </section>
-        <!-- =========== HERO SECTION END =========== -->
+    <!-- Mobile Menu Button -->
+    <button id="menu-toggle" class="md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden bg-black md:hidden border-t border-gray-800">
+    <a href="index.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Home</a>
+    <a href="about.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">About</a>
+    <a href="services.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Services</a>
+    <a href="blog.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Blog</a>
+    <a href="lab.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Lab</a>
+    <a href="projects.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Projects</a>
+    <a href="contact.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Contact</a>
+  </nav>
+</header>
+
+  <!-- Page Overlay for Mobile Menu -->
+  <div id="page-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+
+  <!-- ======= MAIN CONTENT WRAPPER ======= -->
+  <main>
+
+    <!-- ======= HOME SECTION ======= -->
+    <section id="home" class="page-section min-h-[calc(100vh-80px)] flex items-center py-20 lg:py-0 fade-in-section">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 text-white">
+          Powering the Future <span class="text-green-500">⚡</span>
+        </h1>
+        <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+          Reliable solar energy and smart networking solutions for homes and businesses across Africa.
+        </p>
         
-        <!-- =========== SERVICES SECTION START =========== -->
-        <section id="services" class="py-20 bg-black">
-            <div class="container mx-auto px-6">
-                <header class="text-center mb-12 fade-in-element">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">Our Services</h2>
-                     <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">We provide expert solutions across key technology sectors.</p>
-                </header>
-                <div class="grid md:grid-cols-3 gap-8 text-center">
-                    <!-- Cybersecurity Card -->
-                    <div id="cybersecurity" class="service-card fade-in-element p-8 rounded-lg">
-                        <div class="text-5xl text-green-400 mb-4"><i class="fas fa-shield-halved"></i></div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Cybersecurity Excellence</h3>
-                        <p class="text-gray-400 mb-6">From professional training with our CyberOps Lab to penetration testing and security audits, we protect your digital assets.</p>
-                        <a href="#cybersecurity-training" class="mt-auto text-green-400 font-semibold hover:text-white">Learn More <i class="fas fa-arrow-right ml-2"></i></a>
-                    </div>
-                    <!-- Solar Card -->
-                    <div id="solar" class="service-card fade-in-element p-8 rounded-lg">
-                        <div class="text-5xl text-green-400 mb-4"><i class="fas fa-solar-panel"></i></div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Sustainable Solar Energy</h3>
-                        <p class="text-gray-400 mb-6">We design, install, and maintain high-efficiency solar power systems for residential and commercial clients.</p>
-                        <a href="#contact" class="mt-auto text-green-400 font-semibold hover:text-white">Request a Quote <i class="fas fa-arrow-right ml-2"></i></a>
-                    </div>
-                    <!-- Networking Card -->
-                    <div id="networking" class="service-card fade-in-element p-8 rounded-lg">
-                        <div class="text-5xl text-green-400 mb-4"><i class="fas fa-network-wired"></i></div>
-                        <h3 class="text-2xl font-bold text-white mb-2">Reliable Networking</h3>
-                        <p class="text-gray-400 mb-6">Ensuring seamless connectivity with expert network design, infrastructure setup, and ongoing management.</p>
-                         <a href="#contact" class="mt-auto text-green-400 font-semibold hover:text-white">Get Connected <i class="fas fa-arrow-right ml-2"></i></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- =========== SERVICES SECTION END =========== -->
-
-
-        <!-- =========== ABOUT US SECTION START =========== -->
-        <section id="about" class="py-20 bg-gray-900/50">
-            <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="fade-in-element">
-                    <img src="https://placehold.co/600x400/1a1a1a/00ff87?text=NGTechServices" alt="NGTechServices team" class="rounded-lg shadow-2xl">
-                </div>
-                <div class="fade-in-element">
-                    <h2 class="text-3xl md:text-4xl font-bold text-white">About NGTechServices</h2>
-                    <div class="w-24 h-1 bg-green-500 mt-2 mb-6"></div>
-                    <p class="text-gray-400 mb-4">
-                        NGTechServices is a premier technology provider dedicated to empowering businesses and individuals. We believe in a hands-on, practical approach to solving modern challenges, moving beyond theory to deliver real, measurable results.
-                    </p>
-                    <p class="text-gray-400">
-                        Our curriculum and services are designed and constantly updated by industry experts to reflect the current technologies in the ever-evolving landscapes of cybersecurity, renewable energy, and network infrastructure.
-                    </p>
-                </div>
-            </div>
-        </section>
-        <!-- =========== ABOUT US SECTION END =========== -->
-
-        <!-- =========== CYBERSECURITY TRAINING SECTION START =========== -->
-        <section id="cybersecurity-training" class="py-20">
-            <div class="container mx-auto p-4 md:p-8">
-                <header class="text-center mb-12 fade-in-element">
-                    <div class="inline-block bg-green-500/10 text-green-400 py-2 px-4 rounded-full mb-4">
-                        <i class="fas fa-shield-halved mr-2"></i>Our Premier Cybersecurity Training Program
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-bold text-green-400">The Complete CyberOps Lab</h2>
-                    <p class="text-lg text-gray-400 mt-3 max-w-3xl mx-auto">Click on each week below to expand and view the detailed lab exercises for our hands-on curriculum.</p>
-                </header>
-
-                <div id="accordion-container" class="space-y-4 fade-in-element">
-                    <!-- Week 1 -->
-                    <div class="bg-gray-900 rounded-lg shadow-lg border border-gray-800">
-                        <button class="accordion-button w-full text-left p-6 flex justify-between items-center focus:outline-none">
-                            <span class="text-2xl font-semibold text-white"><span class="text-green-400">Week 1:</span> Foundation & Reconnaissance</span>
-                            <i class="fas fa-chevron-down accordion-arrow text-green-400 transition-transform"></i>
-                        </button>
-                        <div class="accordion-content">
-                            <div class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <!-- Your Lab Cards Go Here -->
-                                <div class="card rounded-lg p-5"><h3 class="font-bold text-xl text-green-400 mb-3"><i class="fas fa-cogs mr-2"></i>Lab 1: The Virtual Lab</h3><p class="text-sm text-gray-400 mb-4"><strong>Objective:</strong> Build the virtual battlefield. A correctly configured lab is the bedrock of all cybersecurity practice.</p><div class="space-y-4 text-sm mt-auto"><p><strong><i class="fas fa-globe mr-2 text-green-500"></i>Global Importance:</strong> Safe, isolated environments are essential for security research and skills development without risking real-world systems.</p><p><strong><i class="fas fa-chalkboard-teacher mr-2 text-green-500"></i>Key Concepts:</strong> Virtualization, network segmentation (LAN vs. DMZ), firewall roles.</p><p><strong><i class="fas fa-tools mr-2 text-green-500"></i>Tools:</strong> VMware Workstation/Player</p><details class="bg-gray-800/50 p-3 rounded"><summary class="cursor-pointer font-semibold">VMware Procedure</summary><ol class="list-decimal list-inside text-xs text-gray-400 space-y-1 mt-2"><li><strong>pfSense VM:</strong> Adapters: Bridged (WAN), VMnet1 (LAN), VMnet2 (DMZ).</li><li><strong>Kali VM:</strong> Adapter: VMnet1 (LAN).</li><li><strong>Metasploitable & Wazuh VMs:</strong> Adapter: VMnet2 (DMZ).</li><li><strong>pfSense Config:</strong> Set static IPs for LAN (`192.168.100.1`) and DMZ (`192.168.200.1`).</li><li><strong>Verification:</strong> Kali gets a LAN IP. Set Metasploitable's IP to `192.168.200.10`. Confirm connectivity.</li></ol></details><p class="font-semibold"><i class="fas fa-check-circle mr-2 text-green-500"></i><strong>Outcome:</strong> All VMs online and communicating correctly.</p></div></div>
-                                <div class="card rounded-lg p-5"><h3 class="font-bold text-xl text-green-400 mb-3"><i class="fas fa-search-location mr-2"></i>Lab 2: Network Scanning</h3><p class="text-sm text-gray-400 mb-4"><strong>Objective:</strong> Discover live hosts, open ports, and running services to map the attack surface.</p><div class="space-y-4 text-sm mt-auto"><p><strong><i class="fas fa-globe mr-2 text-green-500"></i>Global Importance:</strong> Reconnaissance is the first phase of any attack. Defenders use the same techniques to find and close security gaps.</p><p><strong><i class="fas fa-chalkboard-teacher mr-2 text-green-500"></i>Key Concepts:</strong> TCP 3-way handshake, Nmap scan types, service version detection.</p><p><strong><i class="fas fa-tools mr-2 text-green-500"></i>Tools:</strong> Nmap</p><details class="bg-gray-800/50 p-3 rounded"><summary class="cursor-pointer font-semibold">Beginner's Procedure</summary><ol class="list-decimal list-inside text-xs text-gray-400 space-y-1 mt-2"><li>Run a ping scan to find live hosts: `nmap -sn 192.168.100.0/24`.</li><li>Run a comprehensive scan on the target: `nmap -sV -sC -p- -oX victim.xml 192.168.200.10`.</li><li>Analyze the XML output to identify all open ports and services.</li></ol></details><p class="font-semibold"><i class="fas fa-check-circle mr-2 text-green-500"></i><strong>Outcome:</strong> A detailed map of the target's open ports and running services.</p></div></div>
-                                <div class="card rounded-lg p-5"><h3 class="font-bold text-xl text-green-400 mb-3"><i class="fas fa-server mr-2"></i>Lab 3: Web Enumeration</h3><p class="text-sm text-gray-400 mb-4"><strong>Objective:</strong> Actively query web services to find hidden directories, files, and potential vulnerabilities.</p><div class="space-y-4 text-sm mt-auto"><p><strong><i class="fas fa-globe mr-2 text-green-500"></i>Global Importance:</strong> Web applications are a primary attack vector. Finding vulnerabilities here is critical for both attackers and defenders.</p><p><strong><i class="fas fa-chalkboard-teacher mr-2 text-green-500"></i>Key Concepts:</strong> HTTP response codes, web server configuration files (`robots.txt`), directory brute-forcing.</p><p><strong><i class="fas fa-tools mr-2 text-green-500"></i>Tools:</strong> Nikto, Dirb</p><details class="bg-gray-800/50 p-3 rounded"><summary class="cursor-pointer font-semibold">Beginner's Procedure</summary><ol class="list-decimal list-inside text-xs text-gray-400 space-y-1 mt-2"><li>Run Nikto for a baseline scan: `nikto -h http://192.168.200.10`.</li><li>Use Dirb to find hidden directories: `dirb http://192.168.200.10`.</li><li>Investigate interesting directories found (e.g., `/dvwa`, `/mutillidae`).</li></ol></details><p class="font-semibold"><i class="fas fa-check-circle mr-2 text-green-500"></i><strong>Outcome:</strong> A list of potential web vulnerabilities and hidden content locations.</p></div></div>
-                                <div class="card rounded-lg p-5"><h3 class="font-bold text-xl text-green-400 mb-3"><i class="fas fa-users mr-2"></i>Lab 4: SMB Enumeration</h3><p class="text-sm text-gray-400 mb-4"><strong>Objective:</strong> Query the SMB service to find network shares, user accounts, and system information.</p><div class="space-y-4 text-sm mt-auto"><p><strong><i class="fas fa-globe mr-2 text-green-500"></i>Global Importance:</strong> Misconfigured SMB services can lead to massive data leaks and are a common entry point for ransomware.</p><p><strong><i class="fas fa-chalkboard-teacher mr-2 text-green-500"></i>Key Concepts:</strong> Server Message Block (SMB) protocol, null sessions, share permissions.</p><p><strong><i class="fas fa-tools mr-2 text-green-500"></i>Tools:</strong> enum4linux</p><details class="bg-gray-800/50 p-3 rounded"><summary class="cursor-pointer font-semibold">Beginner's Procedure</summary><ol class="list-decimal list-inside text-xs text-gray-400 space-y-1 mt-2"><li>Run a full enumeration scan: `enum4linux -a 192.168.200.10`.</li><li>Note any user accounts, machine names, and accessible shares.</li><li>Attempt to connect to an open share: `smbclient //192.168.200.10/tmp`.</li></ol></details><p class="font-semibold"><i class="fas fa-check-circle mr-2 text-green-500"></i><strong>Outcome:</strong> A list of system users and network shares, with potential anonymous access confirmed.</p></div></div>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Add Weeks 2 through 7 accordion items here using the same structure -->
-                </div>
-            </div>
-        </section>
-        <!-- =========== CYBERSECURITY TRAINING SECTION END =========== -->
-        
-        <!-- =========== TESTIMONIALS SECTION START =========== -->
-        <section id="testimonials" class="py-20 bg-black">
-            <div class="container mx-auto px-6">
-                <header class="text-center mb-12 fade-in-element">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">What Our Clients Say</h2>
-                     <p class="text-lg text-gray-400 mt-3 max-w-2xl mx-auto">Real feedback from those who trust NGTechServices.</p>
-                </header>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="fade-in-element bg-gray-900 p-8 rounded-lg border border-gray-800">
-                        <i class="fas fa-quote-left text-green-500 text-2xl mb-4"></i>
-                        <p class="text-gray-400 mb-6">The CyberOps Lab curriculum was the perfect mix of theory and hands-on practice. I finally understand how different vulnerabilities connect.</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/50x50/1a1a1a/ffffff?text=JS" alt="Jane Smith" class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
-                            <div>
-                                <h4 class="font-bold text-white">Jane Smith</h4>
-                                <p class="text-sm text-gray-500">Cybersecurity Student</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="fade-in-element bg-gray-900 p-8 rounded-lg border border-gray-800">
-                        <i class="fas fa-quote-left text-green-500 text-2xl mb-4"></i>
-                        <p class="text-gray-400 mb-6">NGTechServices handled our complete solar panel installation flawlessly. Our energy bills have never been lower. Professional and efficient!</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/50x50/1a1a1a/ffffff?text=MD" alt="Mark Doe" class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
-                            <div>
-                                <h4 class="font-bold text-white">Mark Doe</h4>
-                                <p class="text-sm text-gray-500">Business Owner</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="fade-in-element bg-gray-900 p-8 rounded-lg border border-gray-800">
-                        <i class="fas fa-quote-left text-green-500 text-2xl mb-4"></i>
-                        <p class="text-gray-400 mb-6">Our office network was a mess. The team came in, designed a new infrastructure, and now our connectivity is faster and more reliable than ever.</p>
-                        <div class="flex items-center">
-                            <img src="https://placehold.co/50x50/1a1a1a/ffffff?text=CK" alt="Chris K." class="w-12 h-12 rounded-full mr-4 border-2 border-green-400">
-                            <div>
-                                <h4 class="font-bold text-white">Chris K.</h4>
-                                <p class="text-sm text-gray-500">IT Manager</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- =========== TESTIMONIALS SECTION END =========== -->
-
-        <!-- =========== CONTACT CTA SECTION START =========== -->
-        <section id="contact" class="py-20 bg-gray-900/50">
-            <div class="container mx-auto px-6 text-center fade-in-element">
-                <h2 class="text-3xl md:text-4xl font-bold text-white">Ready to Start Your Project?</h2>
-                <div class="w-24 h-1 bg-green-500 mx-auto mt-2 mb-6"></div>
-                <p class="text-gray-400 max-w-xl mx-auto mb-8">
-                    Have questions about our services or need a custom technology solution? Reach out and let's build something great together.
-                </p>
-                <a href="mailto:contact@ngtechservices.com" class="bg-gray-800 border-2 border-green-500 text-green-400 font-bold py-3 px-8 rounded-full hover:bg-green-500 hover:text-gray-900 transition-all duration-300 text-lg">
-                    <i class="fas fa-envelope mr-2"></i>Email Us
-                </a>
-            </div>
-        </section>
-        <!-- =========== CONTACT CTA SECTION END =========== -->
-    </main>
-
-    <!-- =========== FOOTER START =========== -->
-    <footer class="bg-black border-t border-gray-800">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-green-400 transition-colors"><i class="fab fa-twitter text-2xl"></i></a>
-                <a href="#" class="hover:text-green-400 transition-colors"><i class="fab fa-github text-2xl"></i></a>
-                <a href="#" class="hover:text-green-400 transition-colors"><i class="fab fa-linkedin text-2xl"></i></a>
-            </div>
-            <p>&copy; 2025 NGTechServices. All Rights Reserved.</p>
+        <!-- Key Services Preview -->
+        <div class="mt-20 grid md:grid-cols-3 gap-8 text-left">
+          <div class="bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-green-500/10">
+            <i class="fa-solid fa-solar-panel text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Solar Installation</h3>
+            <p class="text-gray-400">Efficient, affordable solar systems for clean energy independence.</p>
+          </div>
+          <div class="bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-green-500/10">
+            <i class="fa-solid fa-network-wired text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Networking Solutions</h3>
+            <p class="text-gray-400">Reliable cabling, configuration, and secure network setup.</p>
+          </div>
+          <div class="bg-gray-900 p-6 rounded-2xl shadow-lg border border-gray-800 transform transition-transform duration-300 hover:-translate-y-2 hover:shadow-green-500/10">
+            <i class="fa-solid fa-shield-halved text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-2 text-white">Cybersecurity</h3>
+            <p class="text-gray-400">Proactive protection and monitoring to secure your digital assets.</p>
+          </div>
         </div>
-    </footer>
-    <!-- =========== FOOTER END =========== -->
+      </div>
+    </section>
+    <!-- =======================
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Accordion Script ---
-            const accordionButtons = document.querySelectorAll('.accordion-button');
-            accordionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const content = button.nextElementSibling;
-                    const isActive = button.classList.contains('active');
-                    // The block that auto-closed other accordions has been removed.
-                    button.classList.toggle('active');
-                    if (content.style.maxHeight) {
-                        content.style.maxHeight = null;
-                    } else {
-                        content.style.maxHeight = content.scrollHeight + "px";
-                    }
-                });
-            });
 
-            // --- Services Dropdown Toggle (Desktop) ---
-            const servicesButton = document.getElementById('services-button');
-            const servicesDropdown = document.getElementById('services-dropdown');
+     RECENT BLOG POSTS SECTION
+======================== -->
+<section id="recent-blogs" class="bg-black py-16 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-3xl font-bold text-green-500 mb-10 text-center">Recent Blog Posts</h2>
+    <div id="recent-blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
 
-            if (servicesButton) {
-                servicesButton.addEventListener('click', (event) => {
-                    event.stopPropagation(); // Prevent the document click listener from firing immediately
-                    servicesDropdown.classList.toggle('hidden');
-                });
-            }
+    <div class="text-center mt-8">
+      <a href="blog.html" class="text-green-500 hover:underline font-semibold">
+        View All Blogs →
+      </a>
+    </div>
+  </div>
+</section>
 
-            // --- Mobile Menu Toggle ---
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuIcon = document.getElementById('mobile-menu-icon');
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                mobileMenuIcon.classList.toggle('fa-bars');
-                mobileMenuIcon.classList.toggle('fa-times');
-            });
+<!-- ===== Labs Preview Section ===== -->
+<section id="labs" class="py-20 bg-gray-900 border-t border-gray-800">
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center mb-10">
+      <div>
+        <h2 class="text-3xl font-bold text-white">Latest Labs</h2>
+        <p class="text-gray-400">Explore our most recent networking and cybersecurity labs.</p>
+      </div>
+      <a href="labs.html" class="text-green-500 font-semibold hover:text-green-400 transition">View All →</a>
+    </div>
 
-            // --- Close dropdown when clicking outside ---
-            document.addEventListener('click', () => {
-                if (servicesDropdown && !servicesDropdown.classList.contains('hidden')) {
-                    servicesDropdown.classList.add('hidden');
-                }
-            });
-            
-            // --- Scroll Animations ---
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                    }
-                });
-            }, {
-                threshold: 0.1
-            });
-            const elementsToAnimate = document.querySelectorAll('.fade-in-element');
-            elementsToAnimate.forEach(el => observer.observe(el));
+    <div id="latest-labs" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Recent labs will load here dynamically -->
+    </div>
+  </div>
+</section>
 
-            // --- Automatically open the first week's section on load ---
-            if (accordionButtons.length > 0) {
-                setTimeout(() => {
-                    if (!accordionButtons[0].classList.contains('active')) {
-                        accordionButtons[0].click();
-                    }
-                }, 100);
-            }
-        });
-    </script>
+
+    
+  </main>
+
+  <!-- ======= FOOTER ======= -->
+<footer class="bg-black border-t border-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500">
+    <div class="flex justify-center space-x-6 mb-4">
+      <!-- X (Twitter) -->
+      <a href="https://x.com/nathylyang" target="_blank" class="hover:text-green-500 transition-colors" aria-label="X">
+        <i class="fab fa-x-twitter text-2xl"></i>
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/nathyyangi" target="_blank" class="hover:text-green-500 transition-colors" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/yourusername" target="_blank" class="hover:text-green-500 transition-colors" aria-label="Facebook">
+        <i class="fab fa-facebook text-2xl"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 NGTechServices. All Rights Reserved. Powered by NGTech.</p>
+  </div>
+</footer>
+
+
+
+  <!-- ======= MODALS (Shared across all pages) ======= -->
+  
+  <!-- Search Modal -->
+  <div id="search-modal" class="fixed inset-0 z-[70] hidden p-4 pt-20 sm:pt-32">
+    <div class="fixed inset-0 bg-black/60 modal-backdrop transition-opacity" aria-hidden="true"></div>
+    
+    <div class="relative bg-gray-900 w-full max-w-2xl mx-auto rounded-xl shadow-2xl border border-gray-700 transform transition-all">
+      <button id="close-search-btn" class="absolute top-4 right-4 text-gray-500 hover:text-green-500 transition-colors" aria-label="Close search">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <div class="p-6">
+        <div class="relative">
+          <input type="text" id="search-input" placeholder="Search posts by title or keyword..."
+                 class="form-input w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 text-white text-lg rounded-lg transition-all duration-200 focus:border-green-500 focus:ring-green-500">
+          <i class="fas fa-search text-green-500 text-xl absolute left-4 top-1/2 -translate-y-1/2"></i>
+        </div>
+        <p class="text-sm text-gray-500 mt-3">Press Enter to search, or results will appear on the Blog section.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Blog Post Modal (Used on Blog page) -->
+  <div id="post-modal" class="fixed inset-0 z-[70] hidden p-4 overflow-y-auto">
+    <div class="fixed inset-0 bg-black/60 modal-backdrop transition-opacity" aria-hidden="true"></div>
+    
+    <div class="relative bg-gray-900 w-full max-w-4xl mx-auto my-12 rounded-xl shadow-2xl border border-gray-700 transform transition-all">
+      <div class="p-6 md:p-10">
+        <button id="close-post-btn" class="absolute top-4 right-4 text-gray-500 hover:text-green-500 transition-colors z-10" aria-label="Close post">
+          <i class="fas fa-times text-3xl"></i>
+        </button>
+        
+        <!-- Post content injected here -->
+        <!-- Added Tailwind Typography prose classes for clean formatting -->
+        <div id="post-modal-content" class="prose prose-lg prose-invert max-w-none prose-h3:text-green-500 prose-a:text-green-500 hover:prose-a:text-green-400 prose-strong:text-white prose-ul:list-disc prose-ul:ml-4">
+          <!-- Content injected by JS -->
+        </div>
+        
+        <button id="back-to-blog-btn" class="mt-8 inline-flex items-center text-green-500 hover:text-green-400 transition-colors duration-200">
+          <i class="fas fa-arrow-left mr-2"></i>
+          Back to Insights
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Custom Message Box (Used on Contact page) -->
+  <div id="message-modal" class="fixed inset-0 z-[70] hidden items-center justify-center p-4">
+    <div class="fixed inset-0 bg-black/60 modal-backdrop transition-opacity" aria-hidden="true"></div>
+    <div class="relative bg-gray-900 w-full max-w-md mx-auto rounded-xl shadow-2xl border border-gray-700 transform transition-all p-8 text-center">
+      <div id="message-icon" class="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+        <i class="fas fa-check-circle text-4xl"></i>
+      </div>
+      <h3 id="message-title" class="text-2xl font-semibold text-white mb-3">Thank You!</h3>
+      <!-- 
+        TYPO FIX
+        - Corrected "has been." to "has been sent."
+      -->
+      <p id="message-text" class="text-gray-300 mb-6">Your message has been sent. We'll get back to you soon.</p>
+      <button id="close-message-btn" class="bg-green-500 text-black font-semibold px-6 py-2 rounded-lg transition-all duration-300 hover:bg-green-600">
+        Close
+      </button>
+    </div>
+  </div>
+
+  <!-- 
+    SCROLL TO TOP BUTTON
+    - Added the HTML for the new button.
+    - JS and CSS have also been updated to make it work.
+  -->
+  <button id="scroll-top-btn" aria-label="Scroll to top"
+          class="hidden fixed bottom-6 right-6 z-40 bg-green-500 text-black h-12 w-12 rounded-full shadow-lg transition-all duration-300 transform hover:bg-green-600 hover:scale-110">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+
+  <!-- ======= JAVASCRIPT ======= -->
+  <!-- 
+    TAILWIND TYPOGRAPHY
+    - Added the official plugin to auto-style the blog post content.
+  -->
+  <script src="https://cdn.tailwindcss.com/3.4.1?plugins=typography"></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/lab.js" defer></script>
+  <script src="assets/js/blog.js" defer></script>
+
+  
+
+
+
 
 </body>
 </html>

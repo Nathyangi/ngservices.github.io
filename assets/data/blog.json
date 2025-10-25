@@ -1,0 +1,68 @@
+[
+  {
+    
+  "title": "Understanding Network Firewalls: Your Digital Guardian",
+  "author": "Nathaniel Agbeyangi",
+  "date": "2025-10-21",
+  "category": "Networking",
+  "image": "assets/img/firewall.jpg",
+  "content": "In today's interconnected world, where cyber threats lurk around every digital corner, a network firewall stands as your first line of defense. But what exactly is it, and how does it protect your valuable data and systems?\n\n1. What is a Network Firewall?\nImagine a security checkpoint at the entrance of a building. A network firewall acts in a similar way, sitting between your internal network (trusted) and external networks like the internet (untrusted). Its primary function is to monitor incoming and outgoing network traffic and decide whether to allow or block specific data packets based on a set of predetermined security rules.\n\n2. Key Functions of a Network Firewall:\n\n- Packet Filtering: This is the most basic function. Firewalls examine the header of each data packet, checking information like the source IP address, destination IP address, port number, and protocol. If a packet doesn't meet the defined rules, it's dropped.\n\n- Stateful Inspection: More advanced firewalls use stateful inspection. They keep track of the 'state' of active connections. This means they can determine if an incoming packet is part of an established, legitimate connection or if it's an unsolicited attempt to access your network. This makes them much more effective at preventing unauthorized access.\n\n- Application Layer Filtering: Some firewalls can inspect traffic at the application layer, understanding the protocols used by specific applications (like HTTP for web browsing or FTP for file transfers). This allows for more granular control, such as blocking certain types of web content or preventing specific applications from sending data.\n\n- Network Address Translation (NAT): Firewalls often perform NAT, which translates private IP addresses used within your internal network to a single public IP address when communicating with the internet. This hides your internal network structure from external entities, adding an extra layer of security.\n\n- Logging and Auditing: Firewalls record information about the traffic they process, including blocked attempts. This log data is invaluable for security audits, identifying potential threats, and troubleshooting network issues.\n\n3. Types of Network Firewalls:\n\n- Software Firewalls: These are installed on individual computers or servers and protect only that specific device. Windows Firewall is a common example.\n\n- Hardware Firewalls: These are standalone physical devices that protect an entire network. They are typically found in businesses and organizations.\n\n- Cloud Firewalls: Offered as a service, these protect cloud-based infrastructure and applications. They are scalable and flexible.\n\n4. Why is a Network Firewall Essential?\n\nWithout a firewall, your network is an open target for a multitude of cyber threats, including:\n\n- Malware: Viruses, worms, and Trojans can infect your systems.\n- Hacking Attempts: Unauthorized individuals trying to gain access to your network.\n- Denial-of-Service (DoS) Attacks: Overwhelming your network with traffic to make it unavailable.\n- Data Theft: Stealing sensitive information.\n\nIn essence, a network firewall is the watchful guardian that ensures only legitimate and authorized traffic flows into and out of your network, keeping the bad actors at bay and safeguarding your digital assets.",
+  "readMore": "posts/secure-home-network.html"
+
+
+  },
+  {
+    "title": "Getting Started with Solar Power Systems",
+    "author": "NGTech Services",
+    "date": "2025-10-19",
+    "category": "Solar",
+    "image": "assets/img/blog/solar-setup.jpg",
+    "content": "Learn how to plan, install, and maintain small-scale solar power systems for homes or offices.",
+    "readMore": "#"
+  },
+  {
+    "title": "Basics for Small Busines",
+    "author": "Nathaniel Agbeyangi",
+    "date": "2025-10-15",
+    "category": "Cybersecurity",
+    "image": "assets/img/blog/cybersecurity.jpg",
+    "content": "Small businesses are major targets for cyberattacks. Here’s how to secure your data, systems, and devices with practical steps.",
+    "readMore": "#"
+  },
+    {
+    "title": "Nathyl yang",
+    "author": "Nathaniel Agbeyangi",
+    "date": "2025-10-25",
+    "category": "Cybersecurity",
+    "image": "assets/img/blog/cybersecurity.jpg",
+    "content": "Small businesses are major targets for cyberattacks. Here’s how to secure your data, systems, and devices with practical steps.",
+    "readMore": "#"
+  },
+  {
+    "id": "solar-efficiency",
+    "title": "Understanding Solar Power Efficiency",
+    "date": "2025-10-10",
+    "excerpt": "Learn how solar panels convert sunlight into electricity efficiently and practical tips for maximizing output.",
+    "content": "Full content for the post — this can be long HTML or markdown stored as string.",
+    "image": "assets/img/blog-solar.jpg",
+    "link": "blog.html#solar-efficiency"
+  },
+  {
+    "id": "home-network",
+    "title": "Building Secure Home Networks",
+    "date": "2025-09-25",
+    "excerpt": "Best practices to protect your Wi-Fi and connected devices from common threats.",
+    "content": "Full content ...",
+    "image": "assets/img/blog-network.jpg",
+    "link": "blog.html#home-network"
+  },
+  {
+    "id": "cyber-smallbiz",
+    "title": "Cybersecurity  Business",
+    "date": "2025-10-25",
+    "excerpt": "Affordable tools and strategies to protect small business data.",
+    "content": "Full content ...",
+    "image": "assets/img/blog-smallbiz.jpg",
+    "link": "blog.html#cyber-smallbiz"
+  }
+]

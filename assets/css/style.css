@@ -1,0 +1,400 @@
+/* NGTech Services Custom Styles */
+
+/* Smooth scrolling and transitions */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+}
+
+/* NEW: Scroll Progress Bar
+  - Added style for the #scroll-progress div.
+*/
+#scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background-color: #22c55e; /* green-500 */
+  width: 0%;
+  z-index: 100;
+  transition: width 0.1s ease-out;
+}
+
+/* NEW: Active Nav Link
+  - Added style for the .active-link class set by JS.
+*/
+.nav-link.active-link {
+  color: #22c55e; /* green-500 */
+  font-weight: 600;
+}
+.mobile-nav-link.active-link {
+  background-color: #22c55e;
+  color: #000;
+}
+
+
+/* Button animation */
+button {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Navbar */
+nav a {
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #22c55e; /* Tailwind's green-500 */
+}
+
+/* Hero Section */
+section h2 {
+  letter-spacing: 1px;
+}
+
+/* Footer */
+footer {
+  font-size: 0.9rem;
+}
+
+/* NEW: Scroll to Top Button
+  - Added styles for the new button.
+*/
+#scroll-top-btn {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+#scroll-top-btn.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+
+/* ===== Projects Page ===== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.project-card {
+  /* Using Tailwind classes now, but keeping this as a fallback */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  margin: 15px;
+  color: #007bff;
+}
+
+.project-card p {
+  margin: 0 15px 15px;
+  color: #444;
+}
+/* CONTACT PAGE */
+.contact-section {
+  padding: 40px 20px;
+  background: #f9f9f9;
+}
+
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.contact-info, .contact-form {
+  flex: 1 1 400px;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input, .contact-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1em;
+}
+
+.contact-form button {
+  background: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.contact-form button:hover {
+  background: #0056b3;
+}
+
+/* SERVICES PAGE */
+.services-section {
+  background: #f9f9f9;
+  padding: 50px 20px;
+}
+
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.service-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.service-card h3 {
+  color: #007BFF;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.service-card ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.service-card ul li {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+
+/* BLOG / INSIGHTS PAGE */
+.blog-section {
+  background: #f9f9f9;
+  padding: 50px 20px;
+}
+
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.blog-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.blog-card h3 {
+  margin: 15px;
+  color: #007BFF;
+  font-size: 1.2rem;
+}
+
+.blog-card p {
+  margin: 0 15px 15px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.read-more {
+  display: inline-block;
+  margin: 0 15px 15px;
+  color: #007BFF;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+
+/* SINGLE BLOG POST PAGE */
+.post-header {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f0f4ff;
+}
+
+.post-header h2 {
+  font-size: 2rem;
+  color: #007BFF;
+}
+
+.post-meta {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+}
+
+.post-header img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.post-content {
+  padding: 50px 20px;
+  background: #fff;
+}
+
+.post-container {
+  max-width: 900px;
+  margin: auto;
+  line-height: 1.7;
+  color: #333;
+}
+
+.post-container h3 {
+  margin-top: 25px;
+  color: #007BFF;
+}
+
+.post-container p {
+  margin-bottom: 15px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-top: 30px;
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+
+/* ===== BLOG SEARCH BAR ===== */
+.search-bar {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.search-bar input {
+  width: 80%;
+  max-width: 500px;
+  padding: 12px 15px;
+  font-size: 1rem;
+  border: 2px solid #007BFF;
+  border-radius: 30px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.search-bar input:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+/* Blog Cards Layout */
+.blog-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+}
+
+.blog-card img {
+  width: 100%;
+  border-radius: 10px;
+  height: 180px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+/* NEW: Fade-in animation
+  - Styles for the .fade-in-section
+*/
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.blog-full {
+  transition-property: max-height, opacity;
+}

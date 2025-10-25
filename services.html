@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Services | NGTech Services</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <!-- Google Fonts (Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body class="antialiased">
+
+  <!-- Scroll Progress Bar -->
+  <div id="scroll-progress"></div>
+
+<!-- Navbar -->
+<header class="bg-black text-white shadow-md sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <!-- Logo -->
+    <a href="index.html" class="text-2xl font-bold text-green-500 hover:text-green-400 transition">
+      NGTech Services
+    </a>
+
+     <!-- Desktop Navigation -->
+    <nav class="hidden md:flex space-x-8 text-sm font-medium">
+      <a href="index.html" class="hover:text-green-400 transition">Home</a>
+      <a href="about.html" class="hover:text-green-400 transition">About</a>
+      <a href="services.html" class="hover:text-green-400 transition">Services</a>
+      <a href="blog.html" class="hover:text-green-400 transition">Blog</a>
+      <a href="lab.html" class="hover:text-green-400 transition">Lab</a>
+      <a href="projects.html" class="hover:text-green-400 transition">Projects</a>
+      <a href="contact.html" class="hover:text-green-400 transition">Contact</a>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button id="menu-toggle" class="md:hidden focus:outline-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+        stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden bg-black md:hidden border-t border-gray-800">
+    <a href="index.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Home</a>
+    <a href="about.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">About</a>
+    <a href="services.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Services</a>
+    <a href="blog.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Blog</a>
+    <a href="lab.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Lab</a>
+    <a href="projects.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Projects</a>
+    <a href="contact.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black transition">Contact</a>
+  </nav>
+</header>
+
+  <!-- Page Overlay for Mobile Menu -->
+  <div id="page-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
+
+
+  <!-- ======= MAIN CONTENT WRAPPER ======= -->
+  <main>
+
+    <!-- ======= SERVICES SECTION ======= -->
+    <section id="services" class="page-section py-20 lg:py-32 bg-black fade-in-section">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl sm:text-5xl font-bold text-white mb-3">Our Services</h1>
+          <p class="text-lg text-gray-400 max-w-2xl mx-auto">We deliver innovative and reliable technology solutions for homes, businesses, and enterprises.</p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+          
+          <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-lg transform transition-all duration-300 hover:shadow-green-500/10 hover:-translate-y-2">
+            <i class="fas fa-solar-panel text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-3 text-white">Solar Power Installation</h3>
+            <p class="text-gray-400 mb-4">Design, installation, and maintenance of reliable solar energy systems — bringing clean, uninterrupted power to your home or business.</p>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>Off-grid and hybrid systems</li>
+              <li>Battery storage setup</li>
+              <li>Inverter and panel installation</li>
+            </ul>
+          </div>
+          
+          <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-lg transform transition-all duration-300 hover:shadow-green-500/10 hover:-translate-y-2">
+            <i class="fas fa-network-wired text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-3 text-white">Networking Solutions</h3>
+            <p class="text-gray-400 mb-4">Building secure, scalable networks that keep you connected — whether it’s for small offices or enterprise environments.</p>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>LAN/WAN setup</li>
+              <li>Router and switch configuration</li>
+              <li>Network troubleshooting and optimization</li>
+            </ul>
+          </div>
+          
+          <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-lg transform transition-all duration-300 hover:shadow-green-500/10 hover:-translate-y-2">
+            <i class="fas fa-shield-halved text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-3 text-white">Cybersecurity Services</h3>
+            <p class="text-gray-400 mb-4">Protecting your digital assets with proactive blue-team and monitoring strategies, and strengthening your network against cyber threats.</p>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>Firewall and intrusion detection</li>
+              <li>Vulnerability assessment</li>
+              <li>Security awareness & training</li>
+            </ul>
+          </div>
+          
+          <div class="bg-gray-900 p-8 rounded-2xl border border-gray-800 shadow-lg transform transition-all duration-300 hover:shadow-green-500/10 hover:-translate-y-2">
+            <i class="fas fa-bolt text-4xl text-green-500 mb-4"></i>
+            <h3 class="text-2xl font-semibold mb-3 text-white">Electrical & Facility Maintenance</h3>
+            <p class="text-gray-400 mb-4">Professional electrical design, installation, and maintenance — ensuring safety, reliability, and compliance with industry standards.</p>
+            <ul class="list-disc list-inside text-gray-400 space-y-1">
+              <li>Residential and industrial wiring</li>
+              <li>Preventive maintenance</li>
+              <li>Load balancing and energy management</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- ======= FOOTER ======= -->
+<footer class="bg-black border-t border-gray-800">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-gray-500">
+    <div class="flex justify-center space-x-6 mb-4">
+      <!-- X (Twitter) -->
+      <a href="https://x.com/nathylyang" target="_blank" class="hover:text-green-500 transition-colors" aria-label="X">
+        <i class="fab fa-x-twitter text-2xl"></i>
+      </a>
+      <!-- GitHub -->
+      <a href="https://github.com/nathyyangi" target="_blank" class="hover:text-green-500 transition-colors" aria-label="GitHub">
+        <i class="fab fa-github text-2xl"></i>
+      </a>
+      <!-- Facebook -->
+      <a href="https://facebook.com/yourusername" target="_blank" class="hover:text-green-500 transition-colors" aria-label="Facebook">
+        <i class="fab fa-facebook text-2xl"></i>
+      </a>
+    </div>
+    <p>&copy; 2025 NGTechServices. All Rights Reserved. Powered by NGTech.</p>
+  </div>
+</footer>
+
+
+  <!-- ======= MODALS (Shared across all pages) ======= -->
+  
+  <!-- Search Modal -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden p-4 pt-20 sm:pt-32">
+    <div class="fixed inset-0 modal-backdrop transition-opacity" aria-hidden="true"></div>
+    
+    <div class="relative bg-gray-900 w-full max-w-2xl mx-auto rounded-xl shadow-2xl border border-gray-700 transform transition-all">
+      <button id="close-search-btn" class="absolute top-4 right-4 text-gray-500 hover:text-green-500 transition-colors" aria-label="Close search">
+        <i class="fas fa-times text-2xl"></i>
+      </button>
+      <div class="p-6">
+        <div class="relative">
+          <input type="text" id="search-input" placeholder="Search posts by title or keyword..."
+                 class="form-input w-full pl-12 pr-4 py-4 bg-gray-800 border border-gray-700 text-white text-lg rounded-lg transition-all duration-200">
+          <i class="fas fa-search text-green-500 text-xl absolute left-4 top-1/2 -translate-y-1/2"></i>
+        </div>
+        <p class="text-sm text-gray-500 mt-3">Press Enter to search, or results will appear on the Blog section.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Blog Post Modal (Used on Blog page) -->
+  <div id="post-modal" class="fixed inset-0 z-50 hidden p-4 overflow-y-auto">
+    <div class="fixed inset-0 modal-backdrop transition-opacity" aria-hidden="true"></div>
+    
+    <div class="relative bg-gray-900 w-full max-w-4xl mx-auto my-12 rounded-xl shadow-2xl border border-gray-700 transform transition-all">
+      <div class="p-6 md:p-10">
+        <button id="close-post-btn" class="absolute top-4 right-4 text-gray-500 hover:text-green-500 transition-colors" aria-label="Close post">
+          <i class="fas fa-times text-3xl"></i>
+        </button>
+        
+        <!-- Post content injected here -->
+        <div id="post-modal-content" class="prose prose-lg prose-invert max-w-none">
+          <!-- Content injected by JS -->
+        </div>
+        
+        <button id="back-to-blog-btn" class="mt-8 inline-flex items-center text-green-500 hover:text-green-400 transition-colors duration-200">
+          <i class="fas fa-arrow-left mr-2"></i>
+          Back to Insights
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Custom Message Box (Used on Contact page) -->
+  <div id="message-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+    <div class="fixed inset-0 modal-backdrop transition-opacity" aria-hidden="true"></div>
+    <div class="relative bg-gray-900 w-full max-w-md mx-auto rounded-xl shadow-2xl border border-gray-700 transform transition-all p-8 text-center">
+      <div id="message-icon" class="w-16 h-16 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+        <i class="fas fa-check-circle text-4xl"></i>
+      </div>
+      <h3 id="message-title" class="text-2xl font-semibold text-white mb-3">Thank You!</h3>
+      <p id="message-text" class="text-gray-300 mb-6">Your message has been sent. We'll get back to you soon.</p>
+      <button id="close-message-btn" class="bg-green-500 text-black font-semibold px-6 py-2 rounded-lg transition-all duration-300 hover:bg-green-600">
+        Close
+      </button>
+    </div>
+  </div>
+
+
+  <!-- ======= JAVASCRIPT ======= -->
+  <script src="assets/js/main.js" defer></script>
+  
+
+ 
+
+
+
+</body>
+</html>
+
