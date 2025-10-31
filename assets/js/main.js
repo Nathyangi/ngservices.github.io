@@ -2,6 +2,7 @@
    NGTech Services | main.js
    Handles navigation, modals, scroll effects, dark mode, etc.
    Fetches blog + labs from JSON and renders previews.
+   Updated: Links now point to individual HTML files.
    ============================================================ */
 
 /* ========= 1. NAVIGATION & MOBILE MENU ========= */
@@ -89,7 +90,7 @@ if (searchModal && closeSearchBtn) {
   });
 }
 
-/* ========= 6. BLOG POST MODAL ========= */
+/* ========= 6. BLOG POST MODAL (not used now, but kept) ========= */
 const postModal = document.getElementById("post-modal");
 const closePostBtn = document.getElementById("close-post-btn");
 const backToBlogBtn = document.getElementById("back-to-blog-btn");
@@ -119,7 +120,7 @@ if (messageModal && closeMessageBtn) {
   });
 }
 
-/* ========= Helpers: safe text, truncate ========= */
+/* ========= Helpers ========= */
 function escapeHtml(text = "") {
   return text
     .replaceAll("&", "&amp;")
@@ -128,12 +129,13 @@ function escapeHtml(text = "") {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
 function truncate(text = "", max = 140) {
   if (text.length <= max) return text;
   return text.slice(0, max).trim() + "…";
 }
 
-/* ========= 8. DYNAMIC BLOG PREVIEW (fetch blog JSON) ========= */
+/* ========= 8. DYNAMIC BLOG PREVIEW (from assets/data/blog.json) ========= */
 async function loadRecentBlogs() {
   const recentBlogContainer = document.getElementById("recent-blog-container");
   if (!recentBlogContainer) return;
@@ -149,36 +151,33 @@ async function loadRecentBlogs() {
       return;
     }
 
-    recentBlogContainer.innerHTML = items
-      .map((post) => {
-        const img = post.image || "assets/img/blog-placeholder.jpg";
-        const title = escapeHtml(post.title || "Untitled");
-        const date = escapeHtml(post.date || "");
-        const excerpt = escapeHtml(post.excerpt || truncate(post.content || "", 120));
-        const id = encodeURIComponent(post.id || "");
-        // link to blog.html with id query for detail page
-        const link = `blog.html${id ? `?id=${id}` : ""}`;
+    recentBlogContainer.innerHTML = items.map((post) => {
+      const img = post.image || "assets/img/blog-placeholder.jpg";
+      const title = escapeHtml(post.title || "Untitled");
+      const date = escapeHtml(post.date || "");
+      const excerpt = escapeHtml(post.excerpt || truncate(post.content || "", 120));
+      const link = post.link || "#";
 
-        return `
-          <article class="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-md hover:shadow-green-500/10 transition-all duration-300 transform hover:-translate-y-2">
-            <div class="w-full h-44 overflow-hidden rounded-lg mb-4">
-              <img src="${img}" alt="${title}" class="w-full h-full object-cover">
-            </div>
-            <h3 class="text-xl font-semibold text-white mb-2">${title}</h3>
-            <p class="text-gray-400 text-sm mb-3">${date}</p>
-            <p class="text-gray-300 mb-4">${excerpt}</p>
-            <a href="${link}" class="text-green-500 hover:text-green-400 font-medium">Read More →</a>
-          </article>
-        `;
-      })
-      .join("");
+      return `
+        <article class="bg-gray-900 p-6 rounded-2xl border border-gray-800 shadow-md hover:shadow-green-500/10 transition-all duration-300 transform hover:-translate-y-2">
+          <div class="w-full h-44 overflow-hidden rounded-lg mb-4">
+            <img src="${img}" alt="${title}" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-2">${title}</h3>
+          <p class="text-gray-400 text-sm mb-3">${date}</p>
+          <p class="text-gray-300 mb-4">${excerpt}</p>
+          <a href="${link}" class="text-green-500 hover:text-green-400 font-medium">Read More →</a>
+        </article>
+      `;
+    }).join("");
+
   } catch (err) {
     console.error("Error loading blog.json:", err);
     recentBlogContainer.innerHTML = `<p class="text-gray-400 text-center">Failed to load blog posts.</p>`;
   }
 }
 
-/* ========= 9. DYNAMIC LABS PREVIEW (fetch labs JSON) ========= */
+/* ========= 9. DYNAMIC LABS PREVIEW (from assets/data/labs.json) ========= */
 async function loadLatestLabs() {
   const latestLabs = document.getElementById("latest-labs");
   if (!latestLabs) return;
@@ -194,28 +193,26 @@ async function loadLatestLabs() {
       return;
     }
 
-    latestLabs.innerHTML = items
-      .map((lab) => {
-        const img = lab.image || "assets/img/lab-placeholder.jpg";
-        const title = escapeHtml(lab.title || "Untitled Lab");
-        const category = escapeHtml(lab.category || "");
-        const desc = escapeHtml(lab.desc || truncate(lab.description || "", 120));
-        const id = encodeURIComponent(lab.id || "");
-        const link = `lab.html${id ? `?id=${id}` : ""}`;
+    latestLabs.innerHTML = items.map((lab) => {
+      const img = lab.image || "assets/img/lab-placeholder.jpg";
+      const title = escapeHtml(lab.title || "Untitled Lab");
+      const category = escapeHtml(lab.category || "");
+      const desc = escapeHtml(lab.desc || truncate(lab.description || "", 120));
+      const link = lab.link || "#";
 
-        return `
-          <article class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow hover:shadow-green-500/10 transition-all duration-300 transform hover:-translate-y-2">
-            <div class="w-full h-44 overflow-hidden rounded-lg mb-4">
-              <img src="${img}" alt="${title}" class="w-full h-full object-cover">
-            </div>
-            <h3 class="text-xl font-semibold text-white mb-2">${title}</h3>
-            <p class="text-green-500 text-sm mb-2">${category}</p>
-            <p class="text-gray-400 mb-4">${desc}</p>
-            <a href="${link}" class="inline-block mt-2 text-green-500 hover:text-green-400 font-medium">View Lab →</a>
-          </article>
-        `;
-      })
-      .join("");
+      return `
+        <article class="bg-gray-800 p-6 rounded-2xl border border-gray-700 shadow hover:shadow-green-500/10 transition-all duration-300 transform hover:-translate-y-2">
+          <div class="w-full h-44 overflow-hidden rounded-lg mb-4">
+            <img src="${img}" alt="${title}" class="w-full h-full object-cover">
+          </div>
+          <h3 class="text-xl font-semibold text-white mb-2">${title}</h3>
+          <p class="text-green-500 text-sm mb-2">${category}</p>
+          <p class="text-gray-400 mb-4">${desc}</p>
+          <a href="${link}" class="inline-block mt-2 text-green-500 hover:text-green-400 font-medium">View Lab →</a>
+        </article>
+      `;
+    }).join("");
+
   } catch (err) {
     console.error("Error loading labs.json:", err);
     latestLabs.innerHTML = `<p class="text-gray-400 text-center">Failed to load lab projects.</p>`;
@@ -229,7 +226,6 @@ const fadeObserver = new IntersectionObserver(
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add("opacity-100", "translate-y-0");
-        // optionally unobserve to avoid repeated triggers
         fadeObserver.unobserve(entry.target);
       }
     });

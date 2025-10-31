@@ -1,56 +1,22 @@
 [
+  {
+    "id": "network-monitoring",
+    "title": "network-monitoring",
+    "date": "2025-10-15",
+    "category": "Networking",
+    "description": "In this lab, you'll configure IPs, test connectivity, and understand subnet basics.",
+    "image": "assets/img/lab-network1.jpg",
+    "link": "labs/network-monitoring.html"
+  },
+ 
    {
-    "title": "managing",
-    "description": "Configure pfSense for secure network segmentation.",
-    "image": "assets/img/lab2.jpg",
-    "youtube": "https://youtu.be/example",
-    "download": "",
-    "category": "Networking",
-    "date": "2025-11-20"
-  },
-  {
-    "title": "Firewall Configuration Lab",
-    "description": "Configure pfSense for secure network segmentation.",
-    "image": "assets/img/lab2.jpg",
-    "youtube": "",
-    "download": "",
-    "category": "Networking",
-    "date": "2025-10-20"
-  },
-  {
-    "title": "Network Monitoring with Wazuh",
-    "description": "Integrate Wazuh and ELK for SOC-style monitoring.",
-    "image": "assets/img/lab1.jpg",
-    "youtube": "https://youtu.be/example",
-    "download": "",
+    "id": "wazuh-elk-lab",
+    "title": "Building a Virtual SOC with Wazuh and ELK",
+    "date": "2025-09-25",
     "category": "Cybersecurity",
-    "date": "2025-10-22"
-  },
-  {
-    "id": "vlans-segmentation",
-    "title": "Network Segmentation with VLANs",
-    "category": "Networking",
-    "desc": "Learn how to isolate traffic using VLANs in a small office setup.",
-    "description": "Full lab instructions...",
-    "image": "assets/img/lab-vlan.jpg",
-    "link": "lab.html#vlans"
-  },
-  {
-    "id": "pfsense-firewall",
-    "title": "Firewall Configuration in pfSense",
-    "category": "Cybersecurity",
-    "desc": "Set up and secure a network perimeter using pfSense firewall.",
-    "description": "Full lab instructions...",
-    "image": "assets/img/lab-pfsense.jpg",
-    "link": "lab.html#pfsense"
-  },
-  {
-    "id": "solar-monitor",
-    "title": "Solar System Monitoring Dashboard",
-    "category": "IoT & Solar",
-    "desc": "Visualize solar power data using open-source monitoring tools.",
-    "description": "Full lab instructions...",
-    "image": "assets/img/lab-solar.jpg",
-    "link": "lab.html#solar-monitor"
+    "image": "assets/images/labs/wazuh-elk.jpg",
+    "description": "In this project, you’ll deploy a Security Operations Center using Wazuh integrated with the ELK stack. Learn how to detect brute force attacks and monitor system logs.",
+    "video": "youtube.com",
+    "link": "labs/wazuh-elk-lab.html"
   }
 ]
