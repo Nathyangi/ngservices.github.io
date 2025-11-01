@@ -21,8 +21,8 @@ Lagos, Nigeria
 
 ## 📞 Contact Us
 - **Phone:** 08034810829  
-- **Email:** ngservice@gmail.com  
-- **Website:** [https://ngservice.github.io](https://ngservice.github.io)
+- **Email:** thengtechservices@gmail.com | agbesnath@gmail.com
+- **Website:** https://ngtechservices.netlify.app/
 
 ---
 
