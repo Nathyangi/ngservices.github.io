@@ -1,23 +1,15 @@
 [
-  {
-    "id": "network-monitoring",
-    "title": "network-monitoring",
-    "date": "2025-10-15",
-    "category": "Networking",
-    "description": "In this lab, you'll configure IPs, test connectivity, and understand subnet basics.",
-    "image": "assets/img/lab-network1.jpg",
-    "link": "labs/network-monitoring.html"
-  },
+
  
-   {
-    "id": "wazuh-elk-lab",
-    "title": "Building a Virtual SOC with Wazuh and ELK",
-    "date": "2025-09-25",
-    "category": "Cybersecurity",
-    "image": "assets/images/labs/wazuh-elk.jpg",
-    "description": "In this project, you’ll deploy a Security Operations Center using Wazuh integrated with the ELK stack. Learn how to detect brute force attacks and monitor system logs.",
-    "video": "youtube.com",
-    "link": "labs/wazuh-elk-lab.html"
-  }
+ {
+  "id": "introduction-to-networking",
+  "title": "Introduction to Networking",
+  "date": "2025-10-20",
+  "category": "Networking",
+  "image": "assets/img/labs/networking.jpg",
+  "description": "Learn the fundamentals of computer networking, including types of networks, key components, topologies, protocols, and devices. A beginner-friendly guide to understanding how networks connect and communicate.",
+  "link": "labs/Networking-introduction.html"
+}
+
 
 ]
