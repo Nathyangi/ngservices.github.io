@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Understanding IP Addressing and Subnetting | NGTech Services</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Custom Style -->
+  <style>
+    body {
+      background-color: #000;
+      color: #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      background-image: url('../assets/img/network-glow.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-blend-mode: multiply;
+    }
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: linear-gradient(to right, #00ff99, #00cc66);
+      width: 0%;
+      z-index: 1000;
+    }
+  </style>
+</head>
+
+<body class="bg-black bg-opacity-90 text-gray-100 font-[Inter]">
+  <div id="scroll-progress"></div>
+
+  <!-- Navbar -->
+  <header class="bg-black text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="../index.html" class="text-2xl font-bold text-green-500 hover:text-green-400 transition">NGTech Services</a>
+      <nav class="hidden md:flex space-x-8 text-sm font-medium">
+        <a href="../index.html" class="hover:text-green-400">Home</a>
+        <a href="../about.html" class="hover:text-green-400">About</a>
+        <a href="../services.html" class="hover:text-green-400">Services</a>
+        <a href="../blog.html" class="hover:text-green-400">Blog</a>
+        <a href="../lab.html" class="hover:text-green-400">Lab</a>
+        <a href="../projects.html" class="hover:text-green-400">Projects</a>
+        <a href="../contact.html" class="hover:text-green-400">Contact</a>
+      </nav>
+      <button id="menu-toggle" class="md:hidden focus:outline-none">
+        <i class="fa-solid fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <nav id="mobile-menu" class="hidden bg-black md:hidden border-t border-gray-800">
+    <a href="../index.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">Home</a>
+    <a href="../about.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">About</a>
+    <a href="../services.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">Services</a>
+    <a href="../blog.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">Blog</a>
+    <a href="../lab.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">Lab</a>
+    <a href="../projects.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">Projects</a>
+    <a href="../contact.html" class="block px-6 py-3 hover:bg-green-500 hover:text-black">Contact</a>
+  </nav>
+
+  <!-- ======= Lesson Content ======= -->
+  <main class="py-20 px-6 lg:px-20 max-w-5xl mx-auto">
+    <article class="bg-gray-900 bg-opacity-95 border border-gray-800 rounded-2xl shadow-lg overflow-hidden">
+      <img src="../assets/img/labs/ip-add.png" alt="IP Addressing and Subnetting" class="w-full h-72 object-cover">
+
+      <div class="p-8 lg:p-12">
+        <p class="text-green-500 font-semibold mb-2">November 1, 2025</p>
+        <h1 class="text-4xl font-bold text-white mb-6">Understanding IP Addressing and Subnetting</h1>
+
+        <!-- Learning Objectives -->
+        <section class="bg-gray-800 border-l-4 border-green-500 p-5 rounded-lg mb-8">
+          <h2 class="text-green-400 text-xl font-semibold mb-2">🎯 Learning Objectives</h2>
+          <ul class="list-disc list-inside text-gray-300 space-y-1">
+            <li>Understand what IP addresses are and their role in networking.</li>
+            <li>Differentiate between IPv4 and IPv6.</li>
+            <li>Learn how subnetting organizes and secures networks.</li>
+            <li>Calculate and identify subnet ranges for practical networking.</li>
+          </ul>
+        </section>
+
+        <p class="text-gray-300 leading-relaxed mb-6">
+          In computer networking, every device needs an identity to communicate. This identity is called an
+          <strong>IP address</strong>. Think of it as a digital home address — without it, your device wouldn’t know
+          where to send or receive data.
+        </p>
+
+        <h2 class="text-2xl text-green-400 font-semibold mb-3">1. What is an IP Address?</h2>
+        <p class="text-gray-400 mb-6">
+          An <strong>IP (Internet Protocol)</strong> address is a unique number assigned to each device in a network.
+          It helps route data from one computer to another across the internet or a local network.  
+          Example: <code class="text-green-400 bg-gray-800 px-2 py-1 rounded">192.168.1.10</code>
+        </p>
+
+        <h2 class="text-2xl text-green-400 font-semibold mb-3">2. IPv4 vs IPv6</h2>
+        <p class="text-gray-400 mb-6">
+          - <strong>IPv4</strong>: 32-bit system with 4.3 billion possible addresses (e.g., <code>192.168.0.1</code>).  
+          - <strong>IPv6</strong>: 128-bit system, offering an enormous pool of unique addresses (e.g., <code>2001:0db8::1</code>).  
+          <br><br>
+          IPv6 was developed to solve the problem of IPv4 exhaustion and includes improved features like auto-configuration and security.
+        </p>
+
+        <h2 class="text-2xl text-green-400 font-semibold mb-3">3. Understanding Subnetting</h2>
+        <p class="text-gray-400 mb-6">
+          <strong>Subnetting</strong> is the technique of dividing a large network into smaller parts called
+          <em>subnets</em>. Each subnet can function as its own network, allowing better management, security, and traffic control.
+        </p>
+
+        <div class="bg-gray-800 border-l-4 border-green-500 p-4 rounded-lg mb-6">
+          <p class="text-gray-300"><strong>Analogy:</strong> Imagine an apartment building (the network). Each apartment
+          has a unique room number (subnet) to help deliver mail (data) efficiently.</p>
+        </div>
+
+        <h2 class="text-2xl text-green-400 font-semibold mb-3">4. Subnet Masks</h2>
+        <p class="text-gray-400 mb-6">
+          A <strong>subnet mask</strong> tells us which part of an IP address identifies the network and which part identifies the host.
+          <br><br>
+          Example: <code class="text-green-400 bg-gray-800 px-2 py-1 rounded">192.168.1.0 /24</code> means the first 24 bits define the network.
+          <br>Hosts range: <code>192.168.1.1 – 192.168.1.254</code>
+        </p>
+
+        <h2 class="text-2xl text-green-400 font-semibold mb-3">5. Subnetting Example</h2>
+        <p class="text-gray-400 mb-6">
+          Given <code class="text-green-400 bg-gray-800 px-2 py-1 rounded">192.168.10.0/24</code> and the need for 4 subnets:
+          <br>
+          Borrow 2 bits from the host portion → /26 networks:
+          <ul class="list-disc list-inside text-gray-400 space-y-1 mt-3">
+            <li>192.168.10.0/26 → hosts .1–.62</li>
+            <li>192.168.10.64/26 → hosts .65–.126</li>
+            <li>192.168.10.128/26 → hosts .129–.190</li>
+            <li>192.168.10.192/26 → hosts .193–.254</li>
+          </ul>
+        </p>
+
+        <h2 class="text-2xl text-green-400 font-semibold mb-3">6. Practice Lab</h2>
+        <p class="text-gray-400 mb-8">
+          🔹 Open <strong>Cisco Packet Tracer</strong> or <strong>GNS3</strong>  
+          🔹 Build a topology with two routers and multiple PCs  
+          🔹 Assign subnets to each interface  
+          🔹 Test using the <code>ping</code> command  
+          <br><br>
+          This experiment helps visualize how subnets separate and route traffic.
+        </p>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between items-center mt-12 flex-wrap gap-3">
+          <a href="networking-introduction.html" class="inline-flex items-center px-6 py-3 bg-green-600 text-black font-semibold rounded-lg shadow-md hover:bg-green-500 hover:shadow-lg transition duration-300">
+            <i class="fa-solid fa-arrow-left mr-2"></i> Previous Lesson
+          </a>
+
+          <a href="../lab.html" class="inline-flex items-center px-6 py-3 bg-gray-800 text-green-400 font-semibold rounded-lg shadow-md hover:bg-gray-700 hover:text-green-300 transition duration-300">
+            <i class="fa-solid fa-flask mr-2"></i> Back to Labs
+          </a>
+
+          <a href="networking-routing.html" class="inline-flex items-center px-6 py-3 bg-green-600 text-black font-semibold rounded-lg shadow-md hover:bg-green-500 hover:shadow-lg transition duration-300">
+            Next Lesson <i class="fa-solid fa-arrow-right ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-black border-t border-gray-800 mt-20">
+    <div class="container mx-auto px-4 py-8 text-center text-gray-500">
+      <div class="flex justify-center space-x-6 mb-4">
+        <a href="https://x.com/nathylyang" target="_blank" class="hover:text-green-500"><i class="fab fa-x-twitter text-2xl"></i></a>
+        <a href="https://github.com/nathyyangi" target="_blank" class="hover:text-green-500"><i class="fab fa-github text-2xl"></i></a>
+        <a href="https://facebook.com/yourusername" target="_blank" class="hover:text-green-500"><i class="fab fa-facebook text-2xl"></i></a>
+      </div>
+      <p>&copy; 2025 NGTech Services. All Rights Reserved. Powered by NGTech.</p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/main.js" defer></script>
+</body>
+</html>

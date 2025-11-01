@@ -1,15 +1,22 @@
 document.addEventListener("DOMContentLoaded", () => {
   const labsContainer = document.getElementById("labs-container");
   const filterButtons = document.querySelectorAll(".filter-btn");
+
   if (!labsContainer) return;
 
   const isIndexPage =
     window.location.pathname.endsWith("index.html") ||
     window.location.pathname === "/" ||
-    window.location.pathname === "/index";
+    window.location.pathname.endsWith("/index");
 
   const jsonPath = "assets/data/labs.json";
   let allLabs = [];
+
+  // === Show Loading State ===
+  labsContainer.innerHTML = `
+    <p class="text-center text-gray-400 py-10 animate-pulse">
+      Loading labs, please wait...
+    </p>`;
 
   // === Fetch Labs Data ===
   fetch(jsonPath, { cache: "no-store" })
@@ -18,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return res.json();
     })
     .then((labs) => {
+      // Sort newest first
       allLabs = labs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       if (isIndexPage) {
@@ -31,67 +39,57 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error loading labs:", err);
       labsContainer.innerHTML = `
         <p class="text-center text-gray-400 py-10">
-          Error loading labs. Please refresh or check your connection.
+          ❌ Error loading labs. Please refresh or check your connection.
         </p>`;
     });
 
-  // === Display Latest Labs (Homepage only) ===
+  // === Render Latest Labs (Homepage only) ===
   function displayLatestLabs(labs) {
     labsContainer.innerHTML = labs
       .map(
         (lab) => `
-      <div class="lab-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition transform hover:scale-105 duration-300">
-        <img src="${lab.image}" alt="${lab.title}" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold mb-2 text-gray-800">${lab.title}</h3>
-          <p class="text-gray-600 mb-3 text-sm">${formatDate(lab.date)} • ${lab.category}</p>
-          <p class="text-gray-700 mb-4 text-sm">${truncateText(lab.description, 100)}</p>
-          <a href="${lab.link}" class="text-green-600 hover:text-green-700 font-medium">Read More →</a>
-        </div>
-      </div>
-    `
+        <article class="lab-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+          <img src="${lab.image}" alt="${lab.title}" class="w-full h-48 object-cover" loading="lazy">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2 text-gray-800">${lab.title}</h3>
+            <p class="text-gray-600 mb-3 text-sm">${formatDate(lab.date)} • ${lab.category}</p>
+            <p class="text-gray-700 mb-4 text-sm">${truncateText(lab.description, 100)}</p>
+            <a href="${lab.link}" class="text-green-600 hover:text-green-700 font-medium">Read More →</a>
+          </div>
+        </article>`
       )
       .join("");
   }
 
-  // === Display All Labs (labs.html) ===
+  // === Render All Labs (labs.html) ===
   function displayAllLabs(labs) {
-    labsContainer.innerHTML = labs
-      .map(
-        (lab, index) => `
-      <div class="lab-card bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-800 hover:scale-105 transition-transform duration-300" data-category="${lab.category}">
-        <img src="${lab.image}" alt="${lab.title}" class="w-full h-48 object-cover">
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-green-500 mb-2">${lab.title}</h3>
-          <p class="text-gray-400 text-sm mb-3">${formatDate(lab.date)} • ${lab.category}</p>
-          <div class="text-gray-300 text-sm mb-4 read-more-content">${truncateText(lab.description, 120)}</div>
-          ${
-            lab.video
-              ? `
-            <div class="mt-4 rounded-xl overflow-hidden">
-              <iframe class="w-full aspect-video rounded-lg" src="${lab.video}" frameborder="0" allowfullscreen></iframe>
+    labsContainer.innerHTML = labs.length
+      ? labs
+          .map(
+            (lab, index) => `
+          <article class="lab-card bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-800 hover:scale-[1.02] transition-transform duration-300" data-category="${lab.category}">
+            <img src="${lab.image}" alt="${lab.title}" class="w-full h-48 object-cover" loading="lazy">
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-green-500 mb-2">${lab.title}</h3>
+              <p class="text-gray-400 text-sm mb-3">${formatDate(lab.date)} • ${lab.category}</p>
+              <div class="text-gray-300 text-sm mb-4 read-more-content">${truncateText(lab.description, 120)}</div>
+              <div class="flex justify-between items-center mt-4">
+                <button class="read-more-btn text-green-400 hover:text-green-500 text-sm font-medium" data-index="${index}">
+                  Read More ↓
+                </button>
+              </div>
             </div>
-          `
-              : ""
-          }
-          <div class="flex justify-between items-center mt-4">
-            <button class="read-more-btn text-green-400 hover:text-green-500 text-sm font-medium" data-index="${index}">
-              Read More ↓
-            </button>
-          </div>
-        </div>
-      </div>
-    `
-      )
-      .join("");
+          </article>`
+          )
+          .join("")
+      : `<p class="text-center text-gray-400 py-10">No labs found in this category.</p>`;
 
     attachReadMoreListeners(labs);
   }
 
   // === "Read More" Toggle ===
   function attachReadMoreListeners(labs) {
-    const buttons = document.querySelectorAll(".read-more-btn");
-    buttons.forEach((btn) => {
+    document.querySelectorAll(".read-more-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         const index = btn.dataset.index;
         const content = document.querySelectorAll(".read-more-content")[index];
@@ -99,27 +97,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const isExpanded = content.classList.toggle("expanded");
 
         if (isExpanded) {
-          let expandedContent = `<p>${lab.description}</p>`;
+          let expandedHTML = `<p>${lab.description}</p>`;
 
-          // Show video preview if available
-          if (lab.video) {
-            expandedContent += `
+          // Append video if available
+          if (lab.video && !content.querySelector("iframe")) {
+            expandedHTML += `
               <div class="mt-4 rounded-xl overflow-hidden">
-                <iframe class="w-full aspect-video rounded-lg" src="${lab.video}" frameborder="0" allowfullscreen></iframe>
-              </div>
-            `;
+                <iframe class="w-full aspect-video rounded-lg" src="${lab.video}" frameborder="0" allowfullscreen loading="lazy"></iframe>
+              </div>`;
           }
 
-          // Add “View Full Lab” link if available
+          // Append link if available
           if (lab.link) {
-            expandedContent += `
+            expandedHTML += `
               <div class="mt-4">
                 <a href="${lab.link}" class="text-green-400 hover:text-green-500 font-medium">View Full Lab →</a>
-              </div>
-            `;
+              </div>`;
           }
 
-          content.innerHTML = expandedContent;
+          content.innerHTML = expandedHTML;
           btn.textContent = "Show Less ↑";
         } else {
           content.innerHTML = truncateText(lab.description, 120);
@@ -129,42 +125,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // === Filter Logic ===
+  // === Category Filter Logic ===
   function setupFilters() {
     filterButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
         const category = btn.dataset.category;
 
-        // Remove active styles
+        // Highlight selected button
         filterButtons.forEach((b) =>
           b.classList.remove("bg-green-600", "text-white")
         );
-
-        // Highlight active button
         btn.classList.add("bg-green-600", "text-white");
 
-        // Filter labs
+        // Filter logic
         const filteredLabs =
           category === "all"
             ? allLabs
             : allLabs.filter(
                 (lab) =>
                   lab.category &&
-                  lab.category.toLowerCase() === category.toLowerCase()
+                  lab.category.toLowerCase().includes(category.toLowerCase())
               );
 
+        // Re-render
         displayAllLabs(filteredLabs);
       });
     });
   }
 
-  // === Utility Functions ===
+  // === Utility: Format Date ===
   function formatDate(dateStr) {
     const date = new Date(dateStr);
-    return !isNaN(date) ? date.toDateString() : dateStr;
+    return !isNaN(date) ? date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" }) : dateStr;
   }
 
+  // === Utility: Truncate Text ===
   function truncateText(text, length) {
-    return text.length > length ? text.substring(0, length) + "..." : text;
+    return text && text.length > length ? text.substring(0, length) + "..." : text;
   }
 });

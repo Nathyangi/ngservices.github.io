@@ -9,7 +9,16 @@
   "image": "assets/img/labs/networking.jpg",
   "description": "Learn the fundamentals of computer networking, including types of networks, key components, topologies, protocols, and devices. A beginner-friendly guide to understanding how networks connect and communicate.",
   "link": "labs/Networking-introduction.html"
-}
+},
 
+{
+  "id": "ip-addressing-and-subnetting",
+  "title": "Understanding IP Addressing and Subnetting",
+  "date": "2025-11-01",
+  "category": "Networking",
+  "image": "assets/img/labs/ip-add.png",
+  "description": "Master the concepts of IP addressing and subnetting — the foundation of network communication. Learn how IPs identify devices, how subnet masks organize networks, and how to design efficient subnets for real-world applications.",
+  "link": "labs/ip-add.html"
+}
 
 ]
