@@ -1,4 +1,4 @@
-# NG Services
+# NGTech Services
 
 **Reliable Networking and Solar Power Solutions – Lagos, Nigeria**
 
